@@ -17,7 +17,7 @@ principal could actually use day-to-day.
 | 🎯 Achievement & Engagement | Is AI helping student outcomes? | Correlation, before/after comparison, engagement heatmap |
 | ⏱️ Teacher Planning Time | Is AI reducing planning workload? | Min/max/mean, boxplots, IQR outlier detection |
 | 🙋 Teacher Needs | What support do teachers ask for? | Text mining (keyword frequency), topic frequency, sentiment |
-| 🤝 Trust & Readiness | Are teachers comfortable with AI policy/expectations? | VADER sentiment analysis, 5-point Likert scoring |
+| 🤝 Mediating Factors for AI Integration | What do teachers need for AI integration to succeed? | Literature-grounded mediating-factor scoring (0–100), VADER sentiment analysis |
 | 📚 Professional Learning | Who needs AI training or micro-credentials? | K-means clustering (readiness groups), rule-based recommendations |
 | 🧰 Classroom Support Requests | Where should principals allocate resources? | Weighted priority scoring (urgency + recency + frequency) |
 
@@ -63,10 +63,13 @@ specific tab:
 
 - **Sentiment analysis (VADER):** free-text teacher comments are scored from -1
   (very negative) to +1 (very positive) using a lexicon-based NLP model, then
-  aggregated by week and department (Trust & Readiness, Teacher Needs tabs).
-- **Likert-scale scoring:** a simulated 5-point survey (policy clarity, assessment
-  confidence, comfort with AI tools, perceived admin support, pedagogy understanding)
-  is averaged into a composite **trust index** per teacher and department.
+  aggregated by week and department (Mediating Factors, Teacher Needs tabs).
+- **Mediating-factor scoring (0–100):** six factors drawn from the leadership literature on
+  AI integration — Trust in AI Policy, Understanding of Expectations, Institutional Support,
+  Task-Technology Fit, AI Assessment Confidence, and Professional Learning Access — each
+  scored per teacher and aggregated by department. Trust in AI Policy is highlighted as the
+  factor your advisor identified as central; the literature suggests it mediates how
+  effectively the other five factors translate into actual classroom AI use.
 - **Text mining / keyword frequency:** open-ended comments are tokenized and
   stop-words removed to surface the most common terms teachers use when describing
   their needs (Teacher Needs tab) — a lightweight alternative to full topic modeling.

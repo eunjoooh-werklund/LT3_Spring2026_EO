@@ -12,7 +12,7 @@ Each tab maps to one row of the advisor-approved tab plan:
   2. Achievement & Engagement  -> correlation, before/after comparison, engagement scoring
   3. Teacher Planning Time     -> min/max/mean, boxplots, outlier detection
   4. Teacher Needs             -> text mining, topic frequency, sentiment
-  5. Trust & Readiness         -> sentiment analysis, Likert-scale scoring
+  5. Mediating Factors for AI Integration -> literature-grounded factor scoring, sentiment analysis
   6. Professional Learning     -> recommendation logic, clustering
   7. Classroom Support Requests-> priority scoring
 
@@ -48,6 +48,75 @@ st.set_page_config(
 )
 
 DATA_DIR = "data"
+
+# ----------------------------------------------------------------------------
+# Color tokens — one accent per tab, grounded in a "school report" palette
+# rather than generic SaaS blue. Used for headers, metric-card borders, and
+# the active tab underline.
+# ----------------------------------------------------------------------------
+TAB_COLORS = {
+    "overview":     "#2D5F8A",  # chalkboard blue
+    "achievement":  "#2E7D52",  # achievement green
+    "planning":     "#B5651D",  # planner-binder rust/orange
+    "needs":        "#7A4FA3",  # support purple
+    "trust":        "#C2402F",  # trust/alert red-clay
+    "learning":     "#1F8A8C",  # growth teal
+    "support":      "#A88B1F",  # priority gold
+}
+
+st.markdown(f"""
+<style>
+    /* Bigger, bolder tab labels with colored underline per active tab */
+    button[data-baseweb="tab"] {{
+        font-size: 15px;
+        font-weight: 600;
+        padding: 10px 16px;
+    }}
+    button[data-baseweb="tab"][aria-selected="true"] {{
+        border-bottom: 3px solid {TAB_COLORS["overview"]};
+    }}
+    /* Metric cards: subtle colored left-border "card" look */
+    div[data-testid="stMetric"] {{
+        background: rgba(127,127,127,0.06);
+        border-left: 4px solid {TAB_COLORS["overview"]};
+        border-radius: 6px;
+        padding: 12px 14px 8px 14px;
+    }}
+    /* Section headers (the st.markdown("**bold**") subheads) get a hairline rule */
+    .tab-header {{
+        padding: 4px 0 8px 0;
+        margin-bottom: 6px;
+        border-bottom: 2px solid currentColor;
+    }}
+</style>
+""", unsafe_allow_html=True)
+
+
+def tab_header(title: str, color: str, subtitle: str = ""):
+    """Renders a colored section header — used at the top of each tab so the
+    7 tabs read as visually distinct at a glance."""
+    sub_html = f'<div style="color:#666; font-size:0.95rem; margin-top:2px;">{subtitle}</div>' if subtitle else ""
+    st.markdown(
+        f'<div class="tab-header" style="color:{color};">'
+        f'<span style="font-size:1.4rem; font-weight:700;">{title}</span>'
+        f'</div>{sub_html}',
+        unsafe_allow_html=True,
+    )
+
+
+def colored_metric_card(label, value, color, help_text=None):
+    """A single metric rendered with its tab's accent color as the left border,
+    instead of the default neutral Streamlit metric styling."""
+    st.markdown(
+        f"""<div style="background: rgba(127,127,127,0.06); border-left: 4px solid {color};
+        border-radius: 6px; padding: 10px 14px; margin-bottom: 6px;">
+        <div style="font-size:0.8rem; color:#666;">{label}</div>
+        <div style="font-size:1.5rem; font-weight:700; color:{color};">{value}</div>
+        </div>""",
+        unsafe_allow_html=True,
+    )
+    if help_text:
+        st.caption(help_text)
 
 
 @st.cache_data
@@ -146,7 +215,7 @@ tab1, tab2, tab3, tab4, tab5, tab6, tab7 = st.tabs([
     "🎯 Achievement & Engagement",
     "⏱️ Teacher Planning Time",
     "🙋 Teacher Needs",
-    "🤝 Trust & Readiness",
+    "🤝 Mediating Factors for AI Integration",
     "📚 Professional Learning",
     "🧰 Classroom Support Requests",
 ])
@@ -157,7 +226,7 @@ tab1, tab2, tab3, tab4, tab5, tab6, tab7 = st.tabs([
 # Method: frequency counts, adoption rate, trend summaries
 # ============================================================================
 with tab1:
-    st.subheader("How Is AI Being Used Across Classrooms?")
+    tab_header("How Is AI Being Used Across Classrooms?", TAB_COLORS["overview"])
 
     col1, col2, col3, col4, col5 = st.columns(5)
     avg_usage = usage_f["ai_usage_rate"].mean()
@@ -176,11 +245,23 @@ with tab1:
 
     c1, c2 = st.columns(2)
     with c1:
-        st.markdown("**Weekly Adoption Trend (by Department)**")
+        header_row = st.columns([3, 2])
+        header_row[0].markdown("**Weekly Adoption Trend (by Department)**")
+        chart_type = header_row[1].selectbox(
+            "Chart type", ["Line", "Bar", "Area"], key="overview_chart_type", label_visibility="collapsed"
+        )
         weekly_dept = usage_f.groupby(["week_number", "department"], as_index=False)["ai_usage_rate"].mean()
-        fig = px.line(weekly_dept, x="week_number", y="ai_usage_rate", color="department",
-                       labels={"week_number": "Week", "ai_usage_rate": "Avg. Usage Rate"})
-        fig.update_layout(yaxis_tickformat=".0%", height=380, legend_title="")
+        if chart_type == "Line":
+            fig = px.line(weekly_dept, x="week_number", y="ai_usage_rate", color="department",
+                           labels={"week_number": "Week", "ai_usage_rate": "Avg. Usage Rate"})
+        elif chart_type == "Bar":
+            fig = px.bar(weekly_dept, x="week_number", y="ai_usage_rate", color="department",
+                          barmode="group", labels={"week_number": "Week", "ai_usage_rate": "Avg. Usage Rate"})
+        else:
+            fig = px.area(weekly_dept, x="week_number", y="ai_usage_rate", color="department",
+                           labels={"week_number": "Week", "ai_usage_rate": "Avg. Usage Rate"})
+        fig.update_layout(yaxis_tickformat=".0%", height=380, legend_title="",
+                           colorway=px.colors.qualitative.Set2)
         st.plotly_chart(fig, use_container_width=True)
 
     with c2:
@@ -202,8 +283,8 @@ with tab1:
 # Method: correlation, before/after comparison, engagement scoring
 # ============================================================================
 with tab2:
-    st.subheader("Is AI Helping Student Outcomes?")
-    st.caption("Correlational view only — useful for spotting patterns, not proving causation.")
+    tab_header("Is AI Helping Student Outcomes?", TAB_COLORS["achievement"],
+               "Correlational view only — useful for spotting patterns, not proving causation.")
 
     metric_choice = st.radio("Compare AI usage against:", ["Engagement Score", "Achievement Δ%"], horizontal=True)
     y_col = "engagement_score" if metric_choice == "Engagement Score" else "achievement_delta_pct"
@@ -256,7 +337,7 @@ with tab2:
 # Method: min/max/mean, boxplots, outlier detection
 # ============================================================================
 with tab3:
-    st.subheader("Is AI Reducing Planning Workload?")
+    tab_header("Is AI Reducing Planning Workload?", TAB_COLORS["planning"])
 
     c1, c2, c3, c4 = st.columns(4)
     c1.metric("Min Planning Hrs/Wk", f"{usage_f['planning_hours_actual'].min():.1f}")
@@ -265,10 +346,36 @@ with tab3:
     c4.metric("Mean Time Saved/Wk", f"{usage_f['time_saved_hours'].mean():.1f} hrs")
 
     st.markdown("**Boxplot — Planning Hours by Department**")
-    fig = px.box(usage_f, x="department", y="planning_hours_actual", color="department", points="outliers")
+    fig = px.box(usage_f, x="department", y="planning_hours_actual", color="department", points="outliers",
+                 color_discrete_sequence=px.colors.qualitative.Set2)
     fig.update_layout(height=420, showlegend=False, xaxis_title="", yaxis_title="Planning Hours / Week")
     st.plotly_chart(fig, use_container_width=True)
 
+    st.markdown("---")
+    st.markdown(f'<span style="color:{TAB_COLORS["planning"]}; font-weight:700;">🔎 Drill Into One Teacher</span>',
+                unsafe_allow_html=True)
+    teacher_options = sorted(usage_f["teacher_id"].unique())
+    if teacher_options:
+        picked_teacher = st.selectbox("Select a teacher:", teacher_options, key="planning_teacher_pick")
+        t_data = usage_f[usage_f["teacher_id"] == picked_teacher].sort_values("week_number")
+        t_dept = teachers.loc[teachers["teacher_id"] == picked_teacher, "department"].values[0]
+
+        tc1, tc2, tc3 = st.columns(3)
+        tc1.metric(f"{picked_teacher} — Dept.", t_dept)
+        tc2.metric("Avg Planning Hrs/Wk", f"{t_data['planning_hours_actual'].mean():.1f}")
+        tc3.metric("Avg Time Saved/Wk", f"{t_data['time_saved_hours'].mean():.1f} hrs")
+
+        fig_t = go.Figure()
+        fig_t.add_trace(go.Scatter(x=t_data["week_number"], y=t_data["planning_hours_baseline"],
+                                    name="Baseline (no AI)", line=dict(dash="dot", color="#999")))
+        fig_t.add_trace(go.Scatter(x=t_data["week_number"], y=t_data["planning_hours_actual"],
+                                    name="Actual (with AI)", line=dict(color=TAB_COLORS["planning"], width=3)))
+        fig_t.update_layout(height=320, xaxis_title="Week", yaxis_title="Planning Hours", legend_title="")
+        st.plotly_chart(fig_t, use_container_width=True)
+    else:
+        st.info("No teachers in the current filter.")
+
+    st.markdown("---")
     st.markdown("**Outlier Detection — Teachers with Unusually High/Low Planning Time**")
     st.caption("Outliers flagged using the IQR rule (1.5×IQR beyond Q1/Q3) on each teacher's average planning hours.")
     teacher_avg = usage_f.groupby("teacher_id", as_index=False)["planning_hours_actual"].mean()
@@ -306,8 +413,8 @@ with tab3:
 # Method: text mining, topic frequency, sentiment
 # ============================================================================
 with tab4:
-    st.subheader("What Support Do Teachers Ask For?")
-    st.caption("Combines structured support-request tickets with text-mined keywords from open-ended comments.")
+    tab_header("What Support Do Teachers Ask For?", TAB_COLORS["needs"],
+               "Combines structured support-request tickets with text-mined keywords from open-ended comments.")
 
     c1, c2 = st.columns(2)
     with c1:
@@ -345,44 +452,60 @@ with tab4:
         )
 
 # ============================================================================
-# TAB 5 — TRUST & READINESS
-# Principal question: Are teachers comfortable with AI policy and expectations?
-# Method: sentiment analysis, Likert-scale scoring
+# TAB 5 — MEDIATING FACTORS FOR AI INTEGRATION
+# Principal question: What do teachers need for AI integration to succeed?
+# Method: literature-grounded mediating-factor scoring, sentiment analysis
 # ============================================================================
 with tab5:
-    st.subheader("Are Teachers Comfortable With AI Policy & Expectations?")
-    st.caption(
-        "Combines a 5-point Likert survey (policy clarity, assessment confidence, comfort with "
-        "tools, admin support, pedagogy understanding) with VADER sentiment scoring of open-ended comments."
-    )
+    tab_header("What Do Teachers Need for AI Integration to Succeed?", TAB_COLORS["trust"],
+               "Six mediating factors drawn from the leadership literature (institutional support, "
+               "policy coherence, task-technology fit, etc.), each scored 0–100. Trust in AI Policy "
+               "is the factor your advisor flagged as central — it anchors the other five.")
+
+    FACTOR_COLS = ["trust_in_ai_policy", "understanding_expectations", "institutional_support",
+                   "task_technology_fit", "ai_assessment_confidence", "professional_learning_access"]
+    FACTOR_LABELS = {
+        "trust_in_ai_policy": "Trust in AI Policy",
+        "understanding_expectations": "Understanding of Expectations",
+        "institutional_support": "Institutional Support",
+        "task_technology_fit": "Task-Technology Fit",
+        "ai_assessment_confidence": "AI Assessment Confidence",
+        "professional_learning_access": "Professional Learning Access",
+    }
 
     c1, c2, c3 = st.columns(3)
-    c1.metric("Avg. Trust Index", f"{trust_f['trust_index'].mean():.2f} / 5")
+    c1.metric("Trust in AI Policy", f"{trust_f['trust_in_ai_policy'].mean():.0f}%",
+              help="The mediating factor your advisor emphasized most.")
     c2.metric("Avg. Comment Sentiment", f"{comments_f['compound'].mean():+.2f}", help="-1 (very negative) to +1 (very positive)")
     pos_pct = (comments_f["sentiment_label"] == "Positive").mean() if len(comments_f) else 0
     c3.metric("% Positive Comments", f"{pos_pct:.0%}")
 
-    st.markdown("**Likert Scores — Average by Department**")
-    likert_cols = ["policy_clarity", "assessment_confidence", "comfort_with_ai_tools",
-                   "perceived_admin_support", "pedagogy_understanding"]
-    likert_labels = {
-        "policy_clarity": "Policy Clarity",
-        "assessment_confidence": "Assessment Confidence",
-        "comfort_with_ai_tools": "Comfort with AI Tools",
-        "perceived_admin_support": "Perceived Admin Support",
-        "pedagogy_understanding": "Pedagogy Understanding",
-    }
-    radar_data = trust_f.groupby("department")[likert_cols].mean().reset_index()
-
-    fig = go.Figure()
-    for _, row in radar_data.iterrows():
-        fig.add_trace(go.Scatterpolar(
-            r=[row[c] for c in likert_cols] + [row[likert_cols[0]]],
-            theta=[likert_labels[c] for c in likert_cols] + [likert_labels[likert_cols[0]]],
-            fill="toself", name=row["department"], opacity=0.5,
-        ))
-    fig.update_layout(polar=dict(radialaxis=dict(visible=True, range=[1, 5])), height=480)
+    st.markdown("**Mediating Factors — Average Score (Trust in AI Policy highlighted)**")
+    factor_means = trust_f[FACTOR_COLS].mean().rename(FACTOR_LABELS).sort_values(ascending=False)
+    bar_colors = [TAB_COLORS["trust"] if name == "Trust in AI Policy" else "#B4B2A9" for name in factor_means.index]
+    fig = go.Figure(go.Bar(
+        x=factor_means.values, y=factor_means.index, orientation="h",
+        marker_color=bar_colors,
+        text=[f"{v:.0f}%" for v in factor_means.values], textposition="outside",
+    ))
+    fig.update_layout(height=380, xaxis_title="Average Score (0–100)", yaxis_title="",
+                       xaxis_range=[0, 100], margin=dict(l=10, r=40))
     st.plotly_chart(fig, use_container_width=True)
+    st.caption(
+        "💡 **Why Trust leads:** the literature review (middle/instructional/distributed leadership "
+        "studies) repeatedly identifies institutional support and trust as the mediator that enables "
+        "the others — teachers with low trust in the AI policy tend to underuse even strong tools or "
+        "training, regardless of their other scores."
+    )
+
+    st.markdown("---")
+    st.markdown("**Mediating Factor Scores — by Department**")
+    dept_factors = trust_f.groupby("department")[FACTOR_COLS].mean().rename(columns=FACTOR_LABELS)
+    fig_dept = go.Figure()
+    for col in dept_factors.columns:
+        fig_dept.add_trace(go.Bar(name=col, x=dept_factors.index, y=dept_factors[col]))
+    fig_dept.update_layout(barmode="group", height=380, yaxis_title="Score (0–100)", legend_title="")
+    st.plotly_chart(fig_dept, use_container_width=True)
 
     c1, c2 = st.columns(2)
     with c1:
@@ -402,9 +525,9 @@ with tab5:
         else:
             st.dataframe(examples.sample(min(5, len(examples))).reset_index(drop=True), use_container_width=True, hide_index=True)
 
-    with st.expander("See raw Likert-scale data by teacher"):
+    with st.expander("See raw mediating-factor scores by teacher"):
         st.dataframe(
-            trust_f[["teacher_id", "department"] + likert_cols + ["trust_index"]].rename(columns=likert_labels),
+            trust_f[["teacher_id", "department"] + FACTOR_COLS + ["trust_index"]].rename(columns=FACTOR_LABELS),
             use_container_width=True, hide_index=True,
         )
 
@@ -414,12 +537,10 @@ with tab5:
 # Method: recommendation logic, clustering
 # ============================================================================
 with tab6:
-    st.subheader("Who Needs AI Training or Micro-Credentials?")
-    st.caption(
-        "K-means clustering groups teachers into readiness profiles based on trust index, AI usage "
-        "rate, credentials completed, and goal progress — then a simple recommendation rule suggests "
-        "next steps for each group."
-    )
+    tab_header("Who Needs AI Training or Micro-Credentials?", TAB_COLORS["learning"],
+               "K-means clustering groups teachers into readiness profiles based on trust index, AI usage "
+               "rate, credentials completed, and goal progress — then a simple recommendation rule suggests "
+               "next steps for each group.")
 
     # --- Build feature set & cluster ---
     usage_avg = usage.groupby("teacher_id", as_index=False)["ai_usage_rate"].mean()
@@ -495,12 +616,10 @@ with tab6:
 # Method: priority scoring
 # ============================================================================
 with tab7:
-    st.subheader("Where Should Principals Allocate Resources?")
-    st.caption(
-        "Each request gets a 0–100 **priority score** combining urgency, days open, and how "
-        "frequently that request type recurs across the building — so principals can triage "
-        "instead of reading every ticket individually."
-    )
+    tab_header("Where Should Principals Allocate Resources?", TAB_COLORS["support"],
+               "Each request gets a 0–100 priority score combining urgency, days open, and how "
+               "frequently that request type recurs across the building — so principals can triage "
+               "instead of reading every ticket individually.")
 
     active = support_f[support_f["status"] != "Resolved"].copy()
 

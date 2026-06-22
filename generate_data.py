@@ -240,34 +240,56 @@ def _sentiment_comments(teachers: pd.DataFrame):
     return pd.DataFrame(rows)
 
 
-def _trust_readiness_survey(teachers: pd.DataFrame):
-    """Likert-scale (1-5) survey: trust & readiness around AI policy/expectations.
+def _mediating_factors_survey(teachers: pd.DataFrame):
+    """Mediating-factor survey (0-100 scores) for AI integration, grounded in the
+    literature review on middle/instructional/distributed leadership mediators
+    (institutional support/trust, policy coherence, assessment confidence,
+    professional development access, task-technology fit).
 
-    Used for Tab 5 (Trust & Readiness) and as clustering features for Tab 6
-    (Professional Learning readiness groups).
+    Used for the 'Mediating Factors for AI Integration' tab and as clustering
+    features for the Professional Learning readiness groups.
+
+    Target means (illustrative, calibrated to the advisor-provided example):
+        Trust in AI Policy            ~82
+        Understanding of Expectations ~77
+        Institutional Support         ~71
+        Task-Technology Fit           ~79
+        AI Assessment Confidence      ~58
+        Professional Learning Access  ~54
     """
+    # (column_name, display_label, target_mean, spread, propensity_weight)
+    FACTOR_SPECS = [
+        ("trust_in_ai_policy",        "Trust in AI Policy",                 82, 9, 0.6),
+        ("understanding_expectations","Understanding of Expectations",       77, 10, 0.5),
+        ("institutional_support",     "Institutional Support",              71, 11, 0.5),
+        ("task_technology_fit",       "Task-Technology Fit",                 79, 10, 0.4),
+        ("ai_assessment_confidence",  "AI Assessment Confidence",            58, 12, 0.4),
+        ("professional_learning_access", "Professional Learning Access",    54, 13, 0.3),
+    ]
+
     rows = []
     for _, t in teachers.iterrows():
-        lean = t["adoption_propensity"]  # reuse propensity to keep responses internally consistent
+        lean = t["adoption_propensity"] - 0.5  # centered around 0
+        row = {"teacher_id": t["teacher_id"], "department": t["department"]}
+        for col, _label, target_mean, spread, weight in FACTOR_SPECS:
+            val = target_mean + lean * spread * weight * 2 + RNG.normal(0, spread * 0.6)
+            row[col] = int(np.clip(round(val), 0, 100))
+        rows.append(row)
 
-        def likert(center_shift=0.0, noise=0.7):
-            val = 3 + (lean - 0.5) * 4 + center_shift + RNG.normal(0, noise)
-            return int(np.clip(round(val), 1, 5))
-
-        rows.append({
-            "teacher_id": t["teacher_id"],
-            "department": t["department"],
-            "policy_clarity": likert(),              # "I understand the AI use policy"
-            "assessment_confidence": likert(-0.2),    # "I'm confident assessing AI-assisted work fairly"
-            "comfort_with_ai_tools": likert(0.3),     # "I'm comfortable using AI tools in my classroom"
-            "perceived_admin_support": likert(0.1),   # "I feel supported by administration on AI questions"
-            "pedagogy_understanding": likert(-0.1),   # "I understand how to pedagogically integrate AI"
-        })
     df = pd.DataFrame(rows)
-    likert_cols = ["policy_clarity", "assessment_confidence", "comfort_with_ai_tools",
-                   "perceived_admin_support", "pedagogy_understanding"]
-    df["trust_index"] = df[likert_cols].mean(axis=1).round(2)  # composite 1-5 trust/readiness index
+    factor_cols = [spec[0] for spec in FACTOR_SPECS]
+    df["trust_index"] = df[factor_cols].mean(axis=1).round(1)  # composite readiness index (0-100)
     return df
+
+
+FACTOR_LABELS = {
+    "trust_in_ai_policy": "Trust in AI Policy",
+    "understanding_expectations": "Understanding of Expectations",
+    "institutional_support": "Institutional Support",
+    "task_technology_fit": "Task-Technology Fit",
+    "ai_assessment_confidence": "AI Assessment Confidence",
+    "professional_learning_access": "Professional Learning Access",
+}
 
 
 def generate_all(out_dir="data"):
@@ -279,7 +301,7 @@ def generate_all(out_dir="data"):
     pd_records = _pd_records(teachers)
     support = _support_requests(teachers)
     comments = _sentiment_comments(teachers)
-    trust = _trust_readiness_survey(teachers)
+    trust = _mediating_factors_survey(teachers)
 
     teachers.to_csv(f"{out_dir}/teachers.csv", index=False)
     usage.to_csv(f"{out_dir}/weekly_usage.csv", index=False)
