@@ -179,11 +179,11 @@ def load_data():
 
 DEPT_COLORS = {
     "Elective/Arts": "#E8654A",
-    "English": "#C94C30",
-    "Math": "#F4A58E",
-    "Science": "#1A1A1A",
-    "Social Studies": "#6B7280",
-    "Special Education": "#A33D27",
+    "English": "#3B82F6",
+    "Math": "#10B981",
+    "Science": "#8B5CF6",
+    "Social Studies": "#F59E0B",
+    "Special Education": "#EC4899",
 }
 DEPT_ORDER = ["Elective/Arts", "English", "Math", "Science", "Social Studies", "Special Education"]
 
