@@ -85,7 +85,8 @@ st.markdown("""
         background-color: #E8654A !important;
     }
     section[data-testid="stSidebar"] .stSlider [data-testid="stThumbValue"],
-    section[data-testid="stSidebar"] .stSlider label {
+    section[data-testid="stSidebar"] .stSlider label,
+    section[data-testid="stSidebar"] .stSlider p {
         color: #FFFFFF !important;
     }
     section[data-testid="stSidebar"] .stSlider [data-testid="stTickBarMin"],
@@ -100,6 +101,9 @@ st.markdown("""
     }
     section[data-testid="stSidebar"] .stSlider [data-testid="stSliderTrack"] > div:nth-child(2) {
         background: #FFFFFF !important;
+    }
+    section[data-testid="stSidebar"] .stSlider span {
+        color: #FFFFFF !important;
     }
 
     /* Main content */
