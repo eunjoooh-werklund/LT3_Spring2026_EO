@@ -641,7 +641,7 @@ elif page == "Professional Learning":
                 size="professional_goal_progress_pct",
                 hover_data=["teacher_id", "department", "n_completed"],
                 labels={"ai_usage_rate": "AI Usage Rate", "trust_index": "Trust Index"},
-                color_discrete_sequence=[ORANGE_DARK, ORANGE_MUTED, "#10B981"],
+                color_discrete_sequence=["#10B981", ORANGE_MUTED, ORANGE_DARK],
             )
             fig.update_layout(xaxis_tickformat=".0%", height=420,
                               plot_bgcolor="white", paper_bgcolor="white")
