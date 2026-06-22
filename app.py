@@ -624,7 +624,7 @@ elif page == "Professional Learning":
         cluster_means = features.groupby("cluster")[["trust_index", "ai_usage_rate"]].mean()
         cluster_means["composite"] = cluster_means["trust_index"].rank() + cluster_means["ai_usage_rate"].rank()
         ranked = cluster_means.sort_values("composite").index.tolist()
-        readiness_names = ["🔴 Needs Foundational Support", "🟡 Building Confidence", "🟢 Ready to Lead / Mentor"]
+        readiness_names = ["Needs Foundational Support", "Building Confidence", "Ready to Lead / Mentor"]
         name_map = {cl: readiness_names[i] if i < len(readiness_names) else f"Group {i}" for i, cl in enumerate(ranked)}
         features["readiness_group"] = features["cluster"].map(name_map)
 
@@ -635,7 +635,7 @@ elif page == "Professional Learning":
                 size="professional_goal_progress_pct",
                 hover_data=["teacher_id", "department", "n_completed"],
                 labels={"ai_usage_rate": "AI Usage Rate", "trust_index": "Trust Index"},
-                color_discrete_sequence=[ORANGE_DARK, ORANGE_MUTED, ORANGE],
+                color_discrete_sequence=[ORANGE_DARK, ORANGE_MUTED, "#10B981"],
             )
             fig.update_layout(xaxis_tickformat=".0%", height=420,
                               plot_bgcolor="white", paper_bgcolor="white")
@@ -649,12 +649,18 @@ elif page == "Professional Learning":
 
         st.markdown("**Recommendations**")
         recommendations = {
-            "🔴 Needs Foundational Support": "Pair with an instructional coach; prioritize 1:1 onboarding before group PD.",
-            "🟡 Building Confidence": "Enroll in a micro-credential (e.g. Prompt Engineering for Lesson Design); peer observation.",
-            "🟢 Ready to Lead / Mentor": "Invite to lead a PD session or mentor colleagues; consider for pilot programs.",
+            "Needs Foundational Support": "Pair with an instructional coach; prioritize 1:1 onboarding before group PD.",
+            "Building Confidence": "Enroll in a micro-credential (e.g. Prompt Engineering for Lesson Design); peer observation.",
+            "Ready to Lead / Mentor": "Invite to lead a PD session or mentor colleagues; consider for pilot programs.",
+        }
+        readiness_colors = {
+            "Needs Foundational Support": ORANGE_DARK,
+            "Building Confidence": ORANGE_MUTED,
+            "Ready to Lead / Mentor": "#10B981",
         }
         for grp in sorted(features["readiness_group"].unique()):
-            st.markdown(f"- **{grp}**: {recommendations.get(grp, 'Review individually.')}")
+            color = readiness_colors.get(grp, "#1A1A1A")
+            st.markdown(f'- <span style="color:{color}; font-weight:700;">{grp}</span>: {recommendations.get(grp, "Review individually.")}', unsafe_allow_html=True)
 
         with st.expander("Teacher-level assignments"):
             st.dataframe(
