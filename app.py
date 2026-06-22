@@ -297,8 +297,7 @@ if page == "Overview":
     with c2:
         st.markdown("**AI Sessions by Department**")
         freq = usage_f.groupby("department", as_index=False)["ai_sessions"].sum().sort_values("ai_sessions", ascending=False)
-        fig2 = px.bar(freq, x="department", y="ai_sessions", color="department",
-                      color_discrete_sequence=["#E8654A", "#F4A58E", "#C94C30", "#FDCFC4", "#A33D27", "#F7B8A8"])
+        fig2 = px.bar(freq, x="department", y="ai_sessions", color="department")
         fig2.update_layout(height=380, showlegend=False, xaxis_title="", yaxis_title="Total Sessions",
                            plot_bgcolor="white", paper_bgcolor="white")
         fig2.update_yaxes(showgrid=True, gridcolor="#F3F4F6")
