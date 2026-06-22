@@ -33,62 +33,63 @@ from generate_data import generate_all
 # ---------------------------------------------------------------------------
 st.set_page_config(
     page_title="AI in the Classroom — Principal Dashboard",
-    page_icon="📊",
+    page_icon="",
     layout="wide",
     initial_sidebar_state="expanded",
 )
 
 # ---------------------------------------------------------------------------
-# Theme colors
+# Theme colors — Orange / White / Black
 # ---------------------------------------------------------------------------
-PRIMARY = "#1B2A4A"
-ACCENT = "#3B82F6"
-ACCENT_LIGHT = "#EFF6FF"
-SUCCESS = "#10B981"
-WARNING = "#F59E0B"
-DANGER = "#EF4444"
-SURFACE = "#F8FAFC"
-TEXT_MUTED = "#64748B"
+ORANGE = "#E8654A"
+ORANGE_DARK = "#C94C30"
+ORANGE_LIGHT = "#FEF1EE"
+ORANGE_MUTED = "#F4A58E"
+BLACK = "#1A1A1A"
+GRAY = "#6B7280"
+GRAY_LIGHT = "#F3F4F6"
+WHITE = "#FFFFFF"
 
 # ---------------------------------------------------------------------------
-# Custom CSS for app-like look
+# Custom CSS
 # ---------------------------------------------------------------------------
 st.markdown("""
 <style>
-    /* Sidebar styling */
+    /* Sidebar */
     section[data-testid="stSidebar"] {
-        background: #1B2A4A;
-        min-width: 280px;
+        background: #1A1A1A;
+        min-width: 260px;
     }
     section[data-testid="stSidebar"] .stMarkdown p,
     section[data-testid="stSidebar"] .stMarkdown li,
     section[data-testid="stSidebar"] label,
-    section[data-testid="stSidebar"] .stCaption p {
-        color: #CBD5E1 !important;
+    section[data-testid="stSidebar"] .stCaption p,
+    section[data-testid="stSidebar"] [data-testid="stWidgetLabel"] p {
+        color: #FFFFFF !important;
     }
     section[data-testid="stSidebar"] h1,
     section[data-testid="stSidebar"] h2,
-    section[data-testid="stSidebar"] h3 {
+    section[data-testid="stSidebar"] h3,
+    section[data-testid="stSidebar"] h4,
+    section[data-testid="stSidebar"] h5 {
         color: #FFFFFF !important;
     }
-    section[data-testid="stSidebar"] .stRadio label {
-        color: #FFFFFF !important;
-        font-size: 1.05rem !important;
-        font-weight: 500 !important;
-    }
-    section[data-testid="stSidebar"] .stRadio div[role="radiogroup"] label span {
-        color: #FFFFFF !important;
-    }
+    section[data-testid="stSidebar"] .stRadio label,
     section[data-testid="stSidebar"] .stRadio p,
     section[data-testid="stSidebar"] .stRadio span,
     section[data-testid="stSidebar"] .stRadio div {
         color: #FFFFFF !important;
+        font-size: 1rem !important;
     }
-    section[data-testid="stSidebar"] [data-testid="stWidgetLabel"] p {
-        color: #CBD5E1 !important;
+    section[data-testid="stSidebar"] .stMultiSelect span[data-baseweb="tag"] {
+        background-color: #E8654A !important;
+    }
+    section[data-testid="stSidebar"] .stSlider [data-testid="stThumbValue"],
+    section[data-testid="stSidebar"] .stSlider label {
+        color: #FFFFFF !important;
     }
 
-    /* Main content area */
+    /* Main content */
     .main .block-container {
         padding-top: 2rem;
         max-width: 1200px;
@@ -97,54 +98,49 @@ st.markdown("""
     /* Metric cards */
     div[data-testid="stMetric"] {
         background: #FFFFFF;
-        border: 1px solid #E2E8F0;
-        border-radius: 12px;
+        border: 1px solid #E5E7EB;
+        border-top: 3px solid #E8654A;
+        border-radius: 8px;
         padding: 16px 20px 12px 20px;
-        box-shadow: 0 1px 3px rgba(0,0,0,0.06);
     }
     div[data-testid="stMetric"] label {
-        color: #64748B !important;
-        font-size: 0.8rem !important;
+        color: #6B7280 !important;
+        font-size: 0.78rem !important;
         text-transform: uppercase;
         letter-spacing: 0.5px;
     }
     div[data-testid="stMetric"] div[data-testid="stMetricValue"] {
-        color: #1B2A4A !important;
+        color: #1A1A1A !important;
         font-weight: 700 !important;
     }
 
     /* Page header */
     .page-header {
-        background: linear-gradient(135deg, #1B2A4A 0%, #2D4A7A 100%);
+        background: #E8654A;
         color: white;
-        padding: 1.5rem 2rem;
-        border-radius: 12px;
+        padding: 1.2rem 1.8rem;
+        border-radius: 8px;
         margin-bottom: 1.5rem;
     }
     .page-header h2 {
         margin: 0;
-        font-size: 1.5rem;
+        font-size: 1.4rem;
         font-weight: 700;
         color: white;
     }
     .page-header p {
         margin: 0.3rem 0 0 0;
-        color: #94A3B8;
-        font-size: 0.9rem;
+        color: rgba(255,255,255,0.85);
+        font-size: 0.88rem;
     }
 
-    /* Clean expander styling */
+    /* Clean borders */
     details {
-        border: 1px solid #E2E8F0 !important;
+        border: 1px solid #E5E7EB !important;
         border-radius: 8px !important;
     }
 
-    /* Info/success/warning boxes */
-    div[data-testid="stAlert"] {
-        border-radius: 8px;
-    }
-
-    /* Hide default hamburger and footer */
+    /* Hide hamburger and footer */
     #MainMenu {visibility: hidden;}
     footer {visibility: hidden;}
 </style>
@@ -214,26 +210,26 @@ usage = usage.merge(teachers[["teacher_id", "years_experience"]], on="teacher_id
 # Sidebar — Navigation + Filters
 # ---------------------------------------------------------------------------
 with st.sidebar:
-    st.markdown("### 📊 AI in the Classroom")
+    st.markdown("### AI in the Classroom")
     st.caption("Principal Dashboard")
     st.markdown("---")
 
     page = st.radio(
         "Navigation",
         [
-            "🏠 Overview",
-            "🎯 Achievement & Engagement",
-            "⏱️ Planning Time",
-            "🙋 Teacher Needs",
-            "🤝 Mediating Factors",
-            "📚 Professional Learning",
-            "🧰 Support Requests",
+            "Overview",
+            "Achievement & Engagement",
+            "Planning Time",
+            "Teacher Needs",
+            "Mediating Factors",
+            "Professional Learning",
+            "Support Requests",
         ],
         label_visibility="collapsed",
     )
 
     st.markdown("---")
-    st.markdown("##### 🎛️ Filters")
+    st.markdown("##### Filters")
 
     all_depts = sorted(teachers["department"].unique())
     selected_depts = st.multiselect("Department", all_depts, default=all_depts)
@@ -243,7 +239,7 @@ with st.sidebar:
 
     st.markdown("---")
     st.caption(
-        "⚠️ All data is **simulated** for demonstration purposes. "
+        "All data is simulated for demonstration purposes. "
         "No real student or teacher data is used."
     )
 
@@ -261,7 +257,7 @@ trust_f = trust[trust["department"].isin(selected_depts)]
 # ===========================================================================
 # PAGE 1 — OVERVIEW
 # ===========================================================================
-if page == "🏠 Overview":
+if page == "Overview":
     page_header("How Is AI Being Used Across Classrooms?",
                 "Frequency counts, adoption rate, and trend summaries")
 
@@ -287,18 +283,18 @@ if page == "🏠 Overview":
                       labels={"week_number": "Week", "ai_usage_rate": "Usage Rate"})
         fig.update_layout(yaxis_tickformat=".0%", height=380, legend_title="",
                           plot_bgcolor="white", paper_bgcolor="white")
-        fig.update_xaxes(showgrid=True, gridcolor="#F1F5F9")
-        fig.update_yaxes(showgrid=True, gridcolor="#F1F5F9")
+        fig.update_xaxes(showgrid=True, gridcolor="#F3F4F6")
+        fig.update_yaxes(showgrid=True, gridcolor="#F3F4F6")
         st.plotly_chart(fig, use_container_width=True)
 
     with c2:
         st.markdown("**AI Sessions by Department**")
         freq = usage_f.groupby("department", as_index=False)["ai_sessions"].sum().sort_values("ai_sessions", ascending=False)
         fig2 = px.bar(freq, x="department", y="ai_sessions", color="department",
-                      color_discrete_sequence=px.colors.qualitative.Set2)
+                      color_discrete_sequence=["#E8654A", "#F4A58E", "#C94C30", "#FDCFC4", "#A33D27", "#F7B8A8"])
         fig2.update_layout(height=380, showlegend=False, xaxis_title="", yaxis_title="Total Sessions",
                            plot_bgcolor="white", paper_bgcolor="white")
-        fig2.update_yaxes(showgrid=True, gridcolor="#F1F5F9")
+        fig2.update_yaxes(showgrid=True, gridcolor="#F3F4F6")
         st.plotly_chart(fig2, use_container_width=True)
 
     st.markdown("**Department Adoption Cards**")
@@ -310,7 +306,7 @@ if page == "🏠 Overview":
 # ===========================================================================
 # PAGE 2 — ACHIEVEMENT & ENGAGEMENT
 # ===========================================================================
-elif page == "🎯 Achievement & Engagement":
+elif page == "Achievement & Engagement":
     page_header("Is AI Helping Student Outcomes?",
                 "Correlational view — useful for spotting patterns, not proving causation.")
 
@@ -323,8 +319,8 @@ elif page == "🎯 Achievement & Engagement":
         labels={"ai_usage_rate": "AI Usage Rate", y_col: metric_choice},
     )
     fig.update_layout(xaxis_tickformat=".0%", height=440, plot_bgcolor="white", paper_bgcolor="white")
-    fig.update_xaxes(showgrid=True, gridcolor="#F1F5F9")
-    fig.update_yaxes(showgrid=True, gridcolor="#F1F5F9")
+    fig.update_xaxes(showgrid=True, gridcolor="#F3F4F6")
+    fig.update_yaxes(showgrid=True, gridcolor="#F3F4F6")
     st.plotly_chart(fig, use_container_width=True)
 
     corr = usage_f["ai_usage_rate"].corr(usage_f[y_col])
@@ -345,20 +341,20 @@ elif page == "🎯 Achievement & Engagement":
     c1, c2 = st.columns(2)
     with c1:
         fig2 = px.bar(comp, x="usage_group", y="avg_engagement", color="usage_group",
-                      color_discrete_map={"Low AI Use": "#94A3B8", "High AI Use": ACCENT})
+                      color_discrete_map={"Low AI Use": "#D1D5DB", "High AI Use": ORANGE})
         fig2.update_layout(height=300, showlegend=False, xaxis_title="", yaxis_title="Avg. Engagement",
                            plot_bgcolor="white", paper_bgcolor="white")
         st.plotly_chart(fig2, use_container_width=True)
     with c2:
         fig3 = px.bar(comp, x="usage_group", y="avg_achievement", color="usage_group",
-                      color_discrete_map={"Low AI Use": "#94A3B8", "High AI Use": SUCCESS})
+                      color_discrete_map={"Low AI Use": "#D1D5DB", "High AI Use": ORANGE_DARK})
         fig3.update_layout(height=300, showlegend=False, xaxis_title="", yaxis_title="Avg. Achievement Δ%",
                            plot_bgcolor="white", paper_bgcolor="white")
         st.plotly_chart(fig3, use_container_width=True)
 
     st.markdown("**Engagement Heatmap — Department x Week**")
     heat = usage_f.pivot_table(index="department", columns="week_number", values="engagement_score", aggfunc="mean")
-    fig4 = px.imshow(heat, color_continuous_scale="Blues", aspect="auto",
+    fig4 = px.imshow(heat, color_continuous_scale="Oranges", aspect="auto",
                      labels=dict(x="Week", y="Department", color="Engagement"))
     fig4.update_layout(height=300)
     st.plotly_chart(fig4, use_container_width=True)
@@ -366,7 +362,7 @@ elif page == "🎯 Achievement & Engagement":
 # ===========================================================================
 # PAGE 3 — TEACHER PLANNING TIME
 # ===========================================================================
-elif page == "⏱️ Planning Time":
+elif page == "Planning Time":
     page_header("Is AI Reducing Planning Workload?",
                 "Min/max/mean analysis, boxplots, and IQR outlier detection")
 
@@ -378,10 +374,10 @@ elif page == "⏱️ Planning Time":
 
     st.markdown("**Planning Hours by Department**")
     fig = px.box(usage_f, x="department", y="planning_hours_actual", color="department", points="outliers",
-                 color_discrete_sequence=px.colors.qualitative.Set2)
+                 color_discrete_sequence=[ORANGE, ORANGE_DARK, ORANGE_MUTED, "#1A1A1A", "#6B7280", "#F4A58E"])
     fig.update_layout(height=400, showlegend=False, xaxis_title="", yaxis_title="Planning Hours / Week",
                       plot_bgcolor="white", paper_bgcolor="white")
-    fig.update_yaxes(showgrid=True, gridcolor="#F1F5F9")
+    fig.update_yaxes(showgrid=True, gridcolor="#F3F4F6")
     st.plotly_chart(fig, use_container_width=True)
 
     st.markdown("---")
@@ -399,13 +395,13 @@ elif page == "⏱️ Planning Time":
 
         fig_t = go.Figure()
         fig_t.add_trace(go.Scatter(x=t_data["week_number"], y=t_data["planning_hours_baseline"],
-                                   name="Baseline (no AI)", line=dict(dash="dot", color="#94A3B8")))
+                                   name="Baseline (no AI)", line=dict(dash="dot", color="#D1D5DB")))
         fig_t.add_trace(go.Scatter(x=t_data["week_number"], y=t_data["planning_hours_actual"],
-                                   name="Actual (with AI)", line=dict(color=ACCENT, width=3)))
+                                   name="Actual (with AI)", line=dict(color=ORANGE, width=3)))
         fig_t.update_layout(height=300, xaxis_title="Week", yaxis_title="Hours", legend_title="",
                             plot_bgcolor="white", paper_bgcolor="white")
-        fig_t.update_xaxes(showgrid=True, gridcolor="#F1F5F9")
-        fig_t.update_yaxes(showgrid=True, gridcolor="#F1F5F9")
+        fig_t.update_xaxes(showgrid=True, gridcolor="#F3F4F6")
+        fig_t.update_yaxes(showgrid=True, gridcolor="#F3F4F6")
         st.plotly_chart(fig_t, use_container_width=True)
 
     st.markdown("---")
@@ -442,7 +438,7 @@ elif page == "⏱️ Planning Time":
 # ===========================================================================
 # PAGE 4 — TEACHER NEEDS
 # ===========================================================================
-elif page == "🙋 Teacher Needs":
+elif page == "Teacher Needs":
     page_header("What Support Do Teachers Ask For?",
                 "Text mining, topic frequency, and sentiment analysis of teacher feedback")
 
@@ -452,7 +448,7 @@ elif page == "🙋 Teacher Needs":
         type_counts = support_f["request_type"].value_counts().reset_index()
         type_counts.columns = ["Request Type", "Count"]
         fig = px.bar(type_counts, x="Count", y="Request Type", orientation="h",
-                     color_discrete_sequence=[ACCENT])
+                     color_discrete_sequence=[ORANGE])
         fig.update_layout(height=380, yaxis={"categoryorder": "total ascending"},
                           plot_bgcolor="white", paper_bgcolor="white")
         st.plotly_chart(fig, use_container_width=True)
@@ -463,7 +459,7 @@ elif page == "🙋 Teacher Needs":
         if kw:
             kw_df = pd.DataFrame(kw, columns=["Keyword", "Frequency"])
             fig2 = px.bar(kw_df, x="Frequency", y="Keyword", orientation="h",
-                          color_discrete_sequence=["#8B5CF6"])
+                          color_discrete_sequence=[ORANGE_DARK])
             fig2.update_layout(height=380, yaxis={"categoryorder": "total ascending"},
                                plot_bgcolor="white", paper_bgcolor="white")
             st.plotly_chart(fig2, use_container_width=True)
@@ -489,7 +485,7 @@ elif page == "🙋 Teacher Needs":
 # ===========================================================================
 # PAGE 5 — MEDIATING FACTORS FOR AI INTEGRATION
 # ===========================================================================
-elif page == "🤝 Mediating Factors":
+elif page == "Mediating Factors":
     page_header("What Do Teachers Need for AI Integration to Succeed?",
                 "Six literature-grounded mediating factors scored 0–100. "
                 "Trust in AI Policy is the central factor identified in the leadership literature.")
@@ -515,7 +511,7 @@ elif page == "🤝 Mediating Factors":
 
     st.markdown("**Mediating Factors — Average Scores**")
     factor_means = trust_f[FACTOR_COLS].mean().rename(FACTOR_LABELS).sort_values(ascending=True)
-    bar_colors = [DANGER if name == "Trust in AI Policy" else "#94A3B8" for name in factor_means.index]
+    bar_colors = [ORANGE_DARK if name == "Trust in AI Policy" else "#D1D5DB" for name in factor_means.index]
     fig = go.Figure(go.Bar(
         x=factor_means.values, y=factor_means.index, orientation="h",
         marker_color=bar_colors,
@@ -524,7 +520,7 @@ elif page == "🤝 Mediating Factors":
     fig.update_layout(height=360, xaxis_title="Score (0–100)", yaxis_title="",
                       xaxis_range=[0, 100], plot_bgcolor="white", paper_bgcolor="white",
                       margin=dict(l=10, r=60))
-    fig.update_xaxes(showgrid=True, gridcolor="#F1F5F9")
+    fig.update_xaxes(showgrid=True, gridcolor="#F3F4F6")
     st.plotly_chart(fig, use_container_width=True)
     st.caption(
         "💡 The literature review identifies trust in AI policy as the mediator "
@@ -535,13 +531,13 @@ elif page == "🤝 Mediating Factors":
     st.markdown("**Scores by Department**")
     dept_factors = trust_f.groupby("department")[FACTOR_COLS].mean().rename(columns=FACTOR_LABELS)
     fig_dept = go.Figure()
-    colors = ["#3B82F6", "#10B981", "#F59E0B", "#8B5CF6", "#EF4444", "#06B6D4"]
+    colors = [ORANGE, ORANGE_DARK, ORANGE_MUTED, "#1A1A1A", "#6B7280", "#F4A58E"]
     for i, col in enumerate(dept_factors.columns):
         fig_dept.add_trace(go.Bar(name=col, x=dept_factors.index, y=dept_factors[col],
                                   marker_color=colors[i % len(colors)]))
     fig_dept.update_layout(barmode="group", height=380, yaxis_title="Score (0–100)", legend_title="",
                            plot_bgcolor="white", paper_bgcolor="white")
-    fig_dept.update_yaxes(showgrid=True, gridcolor="#F1F5F9")
+    fig_dept.update_yaxes(showgrid=True, gridcolor="#F3F4F6")
     st.plotly_chart(fig_dept, use_container_width=True)
 
     c1, c2 = st.columns(2)
@@ -549,12 +545,12 @@ elif page == "🤝 Mediating Factors":
         st.markdown("**Sentiment Trend Over Semester**")
         weekly_sent = comments_f.groupby(pd.Grouper(key="week_start", freq="W"))["compound"].mean().reset_index()
         fig2 = px.line(weekly_sent, x="week_start", y="compound", markers=True,
-                       color_discrete_sequence=[ACCENT])
-        fig2.add_hline(y=0, line_dash="dash", line_color="#CBD5E1")
+                       color_discrete_sequence=[ORANGE])
+        fig2.add_hline(y=0, line_dash="dash", line_color="#D1D5DB")
         fig2.update_layout(height=320, yaxis_title="Avg. Sentiment", xaxis_title="Week",
                            plot_bgcolor="white", paper_bgcolor="white")
-        fig2.update_xaxes(showgrid=True, gridcolor="#F1F5F9")
-        fig2.update_yaxes(showgrid=True, gridcolor="#F1F5F9")
+        fig2.update_xaxes(showgrid=True, gridcolor="#F3F4F6")
+        fig2.update_yaxes(showgrid=True, gridcolor="#F3F4F6")
         st.plotly_chart(fig2, use_container_width=True)
 
     with c2:
@@ -576,7 +572,7 @@ elif page == "🤝 Mediating Factors":
 # ===========================================================================
 # PAGE 6 — PROFESSIONAL LEARNING
 # ===========================================================================
-elif page == "📚 Professional Learning":
+elif page == "Professional Learning":
     page_header("Who Needs AI Training or Micro-Credentials?",
                 "K-means clustering groups teachers into readiness profiles, "
                 "then a recommendation rule suggests next steps for each group.")
@@ -612,12 +608,12 @@ elif page == "📚 Professional Learning":
                 size="professional_goal_progress_pct",
                 hover_data=["teacher_id", "department", "n_completed"],
                 labels={"ai_usage_rate": "AI Usage Rate", "trust_index": "Trust Index"},
-                color_discrete_sequence=[DANGER, WARNING, SUCCESS],
+                color_discrete_sequence=[ORANGE_DARK, ORANGE_MUTED, ORANGE],
             )
             fig.update_layout(xaxis_tickformat=".0%", height=420,
                               plot_bgcolor="white", paper_bgcolor="white")
-            fig.update_xaxes(showgrid=True, gridcolor="#F1F5F9")
-            fig.update_yaxes(showgrid=True, gridcolor="#F1F5F9")
+            fig.update_xaxes(showgrid=True, gridcolor="#F3F4F6")
+            fig.update_yaxes(showgrid=True, gridcolor="#F3F4F6")
             st.plotly_chart(fig, use_container_width=True)
         with c2:
             st.markdown("**Group Sizes**")
@@ -650,7 +646,7 @@ elif page == "📚 Professional Learning":
         counts = desired_series.value_counts().reset_index()
         counts.columns = ["Topic", "Teachers Requesting"]
         fig = px.bar(counts, x="Teachers Requesting", y="Topic", orientation="h",
-                     color_discrete_sequence=["#06B6D4"])
+                       color_discrete_sequence=[ORANGE])
         fig.update_layout(height=300, yaxis={"categoryorder": "total ascending"},
                           plot_bgcolor="white", paper_bgcolor="white")
         st.plotly_chart(fig, use_container_width=True)
@@ -658,7 +654,7 @@ elif page == "📚 Professional Learning":
 # ===========================================================================
 # PAGE 7 — CLASSROOM SUPPORT REQUESTS
 # ===========================================================================
-elif page == "🧰 Support Requests":
+elif page == "Support Requests":
     page_header("Where Should Principals Allocate Resources?",
                 "Priority scoring: urgency + days open + request frequency → 0–100 score for triage")
 
@@ -677,12 +673,12 @@ elif page == "🧰 Support Requests":
         fig = px.bar(
             top.sort_values("priority_score"), x="priority_score", y="request_id",
             color="urgency", orientation="h",
-            color_discrete_map={"Low": "#94A3B8", "Medium": WARNING, "High": DANGER},
+            color_discrete_map={"Low": "#D1D5DB", "Medium": ORANGE_MUTED, "High": ORANGE_DARK},
             hover_data=["teacher_id", "department", "request_type", "days_open"],
         )
         fig.update_layout(height=400, xaxis_title="Priority Score (0–100)", yaxis_title="",
                           plot_bgcolor="white", paper_bgcolor="white")
-        fig.update_xaxes(showgrid=True, gridcolor="#F1F5F9")
+        fig.update_xaxes(showgrid=True, gridcolor="#F3F4F6")
         st.plotly_chart(fig, use_container_width=True)
 
         st.dataframe(
@@ -695,10 +691,10 @@ elif page == "🧰 Support Requests":
     by_type = active.groupby("request_type", as_index=False)["priority_score"].mean().sort_values("priority_score", ascending=False)
     if not by_type.empty:
         fig2 = px.bar(by_type, x="priority_score", y="request_type", orientation="h",
-                      color_discrete_sequence=[ACCENT])
+                      color_discrete_sequence=[ORANGE])
         fig2.update_layout(height=320, yaxis={"categoryorder": "total ascending"},
                            xaxis_title="Avg. Priority Score", plot_bgcolor="white", paper_bgcolor="white")
-        fig2.update_xaxes(showgrid=True, gridcolor="#F1F5F9")
+        fig2.update_xaxes(showgrid=True, gridcolor="#F3F4F6")
         st.plotly_chart(fig2, use_container_width=True)
 
     st.caption(
