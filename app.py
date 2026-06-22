@@ -88,9 +88,6 @@ st.markdown("""
     section[data-testid="stSidebar"] .stSlider label {
         color: #FFFFFF !important;
     }
-    section[data-testid="stSidebar"] .stSlider div[data-baseweb="slider"] div {
-        background: #FFFFFF !important;
-    }
     section[data-testid="stSidebar"] .stSlider [data-testid="stTickBarMin"],
     section[data-testid="stSidebar"] .stSlider [data-testid="stTickBarMax"] {
         color: #FFFFFF !important;
