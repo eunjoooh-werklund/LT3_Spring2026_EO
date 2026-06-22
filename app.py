@@ -499,7 +499,7 @@ elif page == "Teacher Needs":
     st.markdown("**Sentiment by Department**")
     sent_by_dept = comments_f.groupby("department", as_index=False)["compound"].mean().sort_values("compound")
     fig3 = px.bar(sent_by_dept, x="compound", y="department", orientation="h", color="compound",
-                  color_continuous_scale="RdYlGn", range_color=[-0.5, 0.5])
+                  color_continuous_scale=[[0, "#FDCFC4"], [0.5, "#F4A58E"], [1, "#C94C30"]], range_color=[-0.5, 0.5])
     fig3.update_layout(height=280, coloraxis_showscale=False, xaxis_title="Avg. Sentiment", yaxis_title="",
                        plot_bgcolor="white", paper_bgcolor="white")
     st.plotly_chart(fig3, use_container_width=True)
