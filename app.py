@@ -92,6 +92,15 @@ st.markdown("""
     section[data-testid="stSidebar"] .stSlider [data-testid="stTickBarMax"] {
         color: #FFFFFF !important;
     }
+    section[data-testid="stSidebar"] .stSlider [role="slider"] {
+        background: #FFFFFF !important;
+    }
+    section[data-testid="stSidebar"] .stSlider [data-testid="stSliderTrack"] > div:first-child {
+        background: rgba(255,255,255,0.4) !important;
+    }
+    section[data-testid="stSidebar"] .stSlider [data-testid="stSliderTrack"] > div:nth-child(2) {
+        background: #FFFFFF !important;
+    }
 
     /* Main content */
     .main .block-container {
