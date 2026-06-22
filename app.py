@@ -121,8 +121,7 @@ def colored_metric_card(label, value, color, help_text=None):
 
 @st.cache_data
 def load_data():
-    if not os.path.exists(f"{DATA_DIR}/teachers.csv"):
-        generate_all(DATA_DIR)
+    generate_all(DATA_DIR)
     teachers = pd.read_csv(f"{DATA_DIR}/teachers.csv")
     usage = pd.read_csv(f"{DATA_DIR}/weekly_usage.csv", parse_dates=["week_start"])
     pd_records = pd.read_csv(f"{DATA_DIR}/professional_learning.csv")
