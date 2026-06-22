@@ -178,7 +178,7 @@ def load_data():
 
 
 DEPT_COLORS = {
-    "Elective/Arts": "#E8654A",
+    "Elective/Arts": "#06B6D4",
     "English": "#3B82F6",
     "Math": "#10B981",
     "Science": "#8B5CF6",
