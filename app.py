@@ -79,6 +79,14 @@ st.markdown("""
     section[data-testid="stSidebar"] .stRadio div[role="radiogroup"] label span {
         color: #FFFFFF !important;
     }
+    section[data-testid="stSidebar"] .stRadio p,
+    section[data-testid="stSidebar"] .stRadio span,
+    section[data-testid="stSidebar"] .stRadio div {
+        color: #FFFFFF !important;
+    }
+    section[data-testid="stSidebar"] [data-testid="stWidgetLabel"] p {
+        color: #CBD5E1 !important;
+    }
 
     /* Main content area */
     .main .block-container {
