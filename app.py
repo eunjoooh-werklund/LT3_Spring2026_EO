@@ -99,9 +99,6 @@ st.markdown("""
     section[data-testid="stSidebar"] .stSlider span {
         color: #FFFFFF !important;
     }
-    section[data-testid="stSidebar"] .stSlider div[data-testid="stSliderTrack"] > div:first-child > div {
-        background-color: #FFFFFF !important;
-    }
 
     /* Main content */
     .main .block-container {
@@ -260,7 +257,7 @@ with st.sidebar:
     selected_depts = st.multiselect("Department", all_depts, default=all_depts)
 
     min_week, max_week = int(usage["week_number"].min()), int(usage["week_number"].max())
-    week_range = st.slider("Week of semester", min_week, max_week, (min_week, max_week))
+    week_range = st.slider("Week of semester", min_week, max_week, (min_week, 10))
 
     st.markdown("---")
     st.caption(
