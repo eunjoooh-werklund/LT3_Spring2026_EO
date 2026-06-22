@@ -72,7 +72,12 @@ st.markdown("""
         color: #FFFFFF !important;
     }
     section[data-testid="stSidebar"] .stRadio label {
-        color: #E2E8F0 !important;
+        color: #FFFFFF !important;
+        font-size: 1.05rem !important;
+        font-weight: 500 !important;
+    }
+    section[data-testid="stSidebar"] .stRadio div[role="radiogroup"] label span {
+        color: #FFFFFF !important;
     }
 
     /* Main content area */
