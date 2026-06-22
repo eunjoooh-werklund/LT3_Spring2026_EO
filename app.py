@@ -57,7 +57,7 @@ st.markdown("""
 <style>
     /* Sidebar */
     section[data-testid="stSidebar"] {
-        background: #1A1A1A;
+        background: #E8654A;
         min-width: 260px;
     }
     section[data-testid="stSidebar"] .stMarkdown p,
