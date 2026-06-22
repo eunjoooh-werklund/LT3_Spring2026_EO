@@ -102,6 +102,12 @@ st.markdown("""
     section[data-testid="stSidebar"] [data-baseweb="slider"] [role="progressbar"] {
         background-color: #FFFFFF !important;
     }
+    section[data-testid="stSidebar"] [data-baseweb="slider"] [role="progressbar"] > div {
+        background-color: #FFFFFF !important;
+    }
+    section[data-testid="stSidebar"] [data-baseweb="slider"] div[style*="background-color"] {
+        background-color: #FFFFFF !important;
+    }
 
     /* Main content */
     .main .block-container {
