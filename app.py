@@ -116,21 +116,21 @@ st.markdown("""
 
     /* Page header */
     .page-header {
-        background: #E8654A;
-        color: white;
-        padding: 1.2rem 1.8rem;
-        border-radius: 8px;
+        background: none;
+        color: #E8654A;
+        padding: 0.5rem 0;
         margin-bottom: 1.5rem;
+        border-bottom: 2px solid #E8654A;
     }
     .page-header h2 {
         margin: 0;
         font-size: 1.4rem;
         font-weight: 700;
-        color: white;
+        color: #E8654A;
     }
     .page-header p {
         margin: 0.3rem 0 0 0;
-        color: rgba(255,255,255,0.85);
+        color: #6B7280;
         font-size: 0.88rem;
     }
 
