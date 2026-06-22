@@ -168,6 +168,17 @@ def load_data():
     return teachers, usage, pd_records, support, comments, trust
 
 
+DEPT_COLORS = {
+    "Elective/Arts": "#E8654A",
+    "English": "#C94C30",
+    "Math": "#F4A58E",
+    "Science": "#1A1A1A",
+    "Social Studies": "#6B7280",
+    "Special Education": "#A33D27",
+}
+DEPT_ORDER = ["Elective/Arts", "English", "Math", "Science", "Social Studies", "Special Education"]
+
+
 @st.cache_data
 def score_sentiment(comments_df: pd.DataFrame):
     analyzer = SentimentIntensityAnalyzer()
@@ -284,6 +295,7 @@ if page == "Overview":
         st.markdown("**Weekly Adoption Trend**")
         weekly_dept = usage_f.groupby(["week_number", "department"], as_index=False)["ai_usage_rate"].mean()
         fig = px.line(weekly_dept, x="week_number", y="ai_usage_rate", color="department",
+                      color_discrete_map=DEPT_COLORS, category_orders={"department": DEPT_ORDER},
                       labels={"week_number": "Week", "ai_usage_rate": "Usage Rate"})
         fig.update_layout(yaxis_tickformat=".0%", height=380, legend_title="",
                           plot_bgcolor="white", paper_bgcolor="white")
@@ -294,7 +306,8 @@ if page == "Overview":
     with c2:
         st.markdown("**AI Sessions by Department**")
         freq = usage_f.groupby("department", as_index=False)["ai_sessions"].sum().sort_values("ai_sessions", ascending=False)
-        fig2 = px.bar(freq, x="department", y="ai_sessions", color="department")
+        fig2 = px.bar(freq, x="department", y="ai_sessions", color="department",
+                      color_discrete_map=DEPT_COLORS, category_orders={"department": DEPT_ORDER})
         fig2.update_layout(height=380, showlegend=False, xaxis_title="", yaxis_title="Total Sessions",
                            plot_bgcolor="white", paper_bgcolor="white")
         fig2.update_yaxes(showgrid=True, gridcolor="#F3F4F6")
@@ -318,6 +331,7 @@ elif page == "Achievement & Engagement":
 
     fig = px.scatter(
         usage_f, x="ai_usage_rate", y=y_col, color="department",
+        color_discrete_map=DEPT_COLORS, category_orders={"department": DEPT_ORDER},
         trendline="ols", opacity=0.55,
         labels={"ai_usage_rate": "AI Usage Rate", y_col: metric_choice},
     )
@@ -377,7 +391,7 @@ elif page == "Planning Time":
 
     st.markdown("**Planning Hours by Department**")
     fig = px.box(usage_f, x="department", y="planning_hours_actual", color="department", points="outliers",
-                 color_discrete_sequence=[ORANGE, ORANGE_DARK, ORANGE_MUTED, "#1A1A1A", "#6B7280", "#F4A58E"])
+                 color_discrete_map=DEPT_COLORS, category_orders={"department": DEPT_ORDER})
     fig.update_layout(height=400, showlegend=False, xaxis_title="", yaxis_title="Planning Hours / Week",
                       plot_bgcolor="white", paper_bgcolor="white")
     fig.update_yaxes(showgrid=True, gridcolor="#F3F4F6")
