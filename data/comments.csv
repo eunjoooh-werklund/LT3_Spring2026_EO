@@ -1,0 +1,98 @@
+comment_id,teacher_id,department,week_start,comment_text,_source_bucket
+C00001,T001,Elective/Arts,2026-01-26,"I use it for some tasks but not others, depends on the lesson.",neutral_source
+C00002,T001,Elective/Arts,2026-02-02,I have questions about how to grade work that used AI assistance fairly.,neutral_source
+C00003,T002,English,2026-03-16,The AI lesson-planning tool has cut my prep time significantly and I finally have time to focus on differentiation.,positive_source
+C00004,T002,English,2026-03-30,I don't feel like I understand the expectations for AI use well enough to enforce them confidently.,negative_source
+C00005,T003,Elective/Arts,2026-02-02,I don't feel like I understand the expectations for AI use well enough to enforce them confidently.,negative_source
+C00006,T003,Elective/Arts,2026-03-30,I trust the new assessment rubric because it clearly separates AI-assisted drafts from final work.,positive_source
+C00007,T003,Elective/Arts,2026-04-20,I don't feel like I understand the expectations for AI use well enough to enforce them confidently.,negative_source
+C00008,T004,Social Studies,2026-03-30,I feel supported by administration when questions about AI use come up with parents.,positive_source
+C00009,T005,Math,2026-03-09,Students are more engaged when I use AI-generated practice problems tailored to their level.,positive_source
+C00010,T005,Math,2026-04-20,Not sure yet if this is saving me time overall once I factor in fixing AI mistakes.,neutral_source
+C00011,T006,Special Education,2026-02-23,"I use it for some tasks but not others, depends on the lesson.",neutral_source
+C00012,T006,Special Education,2026-04-27,I'm worried about students relying on AI instead of building foundational skills.,negative_source
+C00013,T007,Elective/Arts,2026-03-30,I'm worried about students relying on AI instead of building foundational skills.,negative_source
+C00014,T008,Elective/Arts,2026-03-02,The micro-credential course on prompt engineering was genuinely useful and easy to apply right away.,positive_source
+C00015,T008,Elective/Arts,2026-03-16,The micro-credential course on prompt engineering was genuinely useful and easy to apply right away.,positive_source
+C00016,T009,Math,2026-01-26,"I use it for some tasks but not others, depends on the lesson.",neutral_source
+C00017,T010,English,2026-01-19,I don't feel like I understand the expectations for AI use well enough to enforce them confidently.,negative_source
+C00018,T010,English,2026-03-02,Not sure yet if this is saving me time overall once I factor in fixing AI mistakes.,neutral_source
+C00019,T010,English,2026-03-23,I haven't had time to attend any of the AI training sessions offered this semester.,negative_source
+C00020,T011,Science,2026-04-06,The micro-credential course on prompt engineering was genuinely useful and easy to apply right away.,positive_source
+C00021,T011,Science,2026-04-20,The policy on academic integrity and AI feels unclear and inconsistent across departments.,negative_source
+C00022,T011,Science,2026-04-27,I need an ed-tech specialist in my room because I don't feel confident troubleshooting these tools alone.,negative_source
+C00023,T012,Special Education,2026-01-26,I haven't had time to attend any of the AI training sessions offered this semester.,negative_source
+C00024,T012,Special Education,2026-02-09,Not sure yet if this is saving me time overall once I factor in fixing AI mistakes.,neutral_source
+C00025,T013,Social Studies,2026-03-16,Students are more engaged when I use AI-generated practice problems tailored to their level.,positive_source
+C00026,T013,Social Studies,2026-03-23,I need an ed-tech specialist in my room because I don't feel confident troubleshooting these tools alone.,negative_source
+C00027,T014,Elective/Arts,2026-02-16,I feel much more confident about the district's AI policy after the last training session.,positive_source
+C00028,T015,English,2026-03-02,"I use it for some tasks but not others, depends on the lesson.",neutral_source
+C00029,T015,English,2026-03-23,Training has been okay but I'd like more subject-specific examples.,neutral_source
+C00030,T016,Science,2026-03-02,I don't feel like I understand the expectations for AI use well enough to enforce them confidently.,negative_source
+C00031,T016,Science,2026-03-09,"I use it for some tasks but not others, depends on the lesson.",neutral_source
+C00032,T016,Science,2026-03-16,I need an ed-tech specialist in my room because I don't feel confident troubleshooting these tools alone.,negative_source
+C00033,T016,Science,2026-04-13,I appreciate having clear guidance on what counts as acceptable AI use for assignments.,positive_source
+C00034,T017,English,2026-01-26,Students are more engaged when I use AI-generated practice problems tailored to their level.,positive_source
+C00035,T017,English,2026-03-23,I need an ed-tech specialist in my room because I don't feel confident troubleshooting these tools alone.,negative_source
+C00036,T017,English,2026-04-06,The AI lesson-planning tool has cut my prep time significantly and I finally have time to focus on differentiation.,positive_source
+C00037,T017,English,2026-04-13,"Some students use the AI tools well, others just copy outputs without thinking.",neutral_source
+C00038,T018,Math,2026-04-27,I feel supported by administration when questions about AI use come up with parents.,positive_source
+C00039,T019,Elective/Arts,2026-03-09,Students are more engaged when I use AI-generated practice problems tailored to their level.,positive_source
+C00040,T019,Elective/Arts,2026-04-20,"I'm skeptical this is actually helping engagement, it feels like a novelty that's wearing off.",negative_source
+C00041,T020,Social Studies,2026-01-12,I have questions about how to grade work that used AI assistance fairly.,neutral_source
+C00042,T020,Social Studies,2026-03-02,"I use it for some tasks but not others, depends on the lesson.",neutral_source
+C00043,T020,Social Studies,2026-04-20,The AI lesson-planning tool has cut my prep time significantly and I finally have time to focus on differentiation.,positive_source
+C00044,T021,Elective/Arts,2026-03-09,I have questions about how to grade work that used AI assistance fairly.,neutral_source
+C00045,T021,Elective/Arts,2026-03-23,I need an ed-tech specialist in my room because I don't feel confident troubleshooting these tools alone.,negative_source
+C00046,T022,Science,2026-01-26,"Planning time hasn't really gone down, I still have to heavily edit what the AI produces.",negative_source
+C00047,T022,Science,2026-02-09,"I'm still getting used to the new AI tools, it's a mixed bag depending on the week.",neutral_source
+C00048,T023,Special Education,2026-01-12,"Planning time hasn't really gone down, I still have to heavily edit what the AI produces.",negative_source
+C00049,T023,Special Education,2026-01-19,I'm worried about students relying on AI instead of building foundational skills.,negative_source
+C00050,T024,Special Education,2026-01-19,Not sure yet if this is saving me time overall once I factor in fixing AI mistakes.,neutral_source
+C00051,T024,Special Education,2026-02-23,"I'm skeptical this is actually helping engagement, it feels like a novelty that's wearing off.",negative_source
+C00052,T024,Special Education,2026-03-30,I'm worried about students relying on AI instead of building foundational skills.,negative_source
+C00053,T024,Special Education,2026-04-13,I haven't had time to attend any of the AI training sessions offered this semester.,negative_source
+C00054,T025,Elective/Arts,2026-01-12,The AI lesson-planning tool has cut my prep time significantly and I finally have time to focus on differentiation.,positive_source
+C00055,T025,Elective/Arts,2026-01-26,Not sure yet if this is saving me time overall once I factor in fixing AI mistakes.,neutral_source
+C00056,T025,Elective/Arts,2026-04-13,"I'm still getting used to the new AI tools, it's a mixed bag depending on the week.",neutral_source
+C00057,T026,Math,2026-02-09,"Some students use the AI tools well, others just copy outputs without thinking.",neutral_source
+C00058,T026,Math,2026-04-27,"I'm skeptical this is actually helping engagement, it feels like a novelty that's wearing off.",negative_source
+C00059,T027,English,2026-03-02,I haven't had time to attend any of the AI training sessions offered this semester.,negative_source
+C00060,T027,English,2026-04-06,I have questions about how to grade work that used AI assistance fairly.,neutral_source
+C00061,T028,Math,2026-01-26,"I'm still getting used to the new AI tools, it's a mixed bag depending on the week.",neutral_source
+C00062,T029,Math,2026-02-02,I'm worried about students relying on AI instead of building foundational skills.,negative_source
+C00063,T030,Social Studies,2026-01-12,"Some students use the AI tools well, others just copy outputs without thinking.",neutral_source
+C00064,T030,Social Studies,2026-01-26,Not sure yet if this is saving me time overall once I factor in fixing AI mistakes.,neutral_source
+C00065,T031,Elective/Arts,2026-01-12,I don't feel like I understand the expectations for AI use well enough to enforce them confidently.,negative_source
+C00066,T031,Elective/Arts,2026-02-23,I trust the new assessment rubric because it clearly separates AI-assisted drafts from final work.,positive_source
+C00067,T031,Elective/Arts,2026-03-09,I feel much more confident about the district's AI policy after the last training session.,positive_source
+C00068,T032,Special Education,2026-01-19,I'm worried about students relying on AI instead of building foundational skills.,negative_source
+C00069,T032,Special Education,2026-01-26,The micro-credential course on prompt engineering was genuinely useful and easy to apply right away.,positive_source
+C00070,T032,Special Education,2026-02-02,Training has been okay but I'd like more subject-specific examples.,neutral_source
+C00071,T032,Special Education,2026-04-20,I feel supported by administration when questions about AI use come up with parents.,positive_source
+C00072,T033,Science,2026-02-09,Not sure yet if this is saving me time overall once I factor in fixing AI mistakes.,neutral_source
+C00073,T033,Science,2026-02-16,Not sure yet if this is saving me time overall once I factor in fixing AI mistakes.,neutral_source
+C00074,T033,Science,2026-03-16,"I'm still getting used to the new AI tools, it's a mixed bag depending on the week.",neutral_source
+C00075,T034,Science,2026-02-09,The policy on academic integrity and AI feels unclear and inconsistent across departments.,negative_source
+C00076,T034,Science,2026-04-20,"Planning time hasn't really gone down, I still have to heavily edit what the AI produces.",negative_source
+C00077,T035,English,2026-02-16,My team meetings are more productive now that we share AI-generated differentiation strategies.,positive_source
+C00078,T035,English,2026-02-23,Not sure yet if this is saving me time overall once I factor in fixing AI mistakes.,neutral_source
+C00079,T035,English,2026-04-27,Not sure yet if this is saving me time overall once I factor in fixing AI mistakes.,neutral_source
+C00080,T036,Math,2026-02-16,"I'm still getting used to the new AI tools, it's a mixed bag depending on the week.",neutral_source
+C00081,T036,Math,2026-02-23,I don't feel like I understand the expectations for AI use well enough to enforce them confidently.,negative_source
+C00082,T036,Math,2026-04-20,"Planning time hasn't really gone down, I still have to heavily edit what the AI produces.",negative_source
+C00083,T036,Math,2026-04-27,I'm worried about students relying on AI instead of building foundational skills.,negative_source
+C00084,T037,Math,2026-03-02,"I'm still getting used to the new AI tools, it's a mixed bag depending on the week.",neutral_source
+C00085,T037,Math,2026-03-16,"I use it for some tasks but not others, depends on the lesson.",neutral_source
+C00086,T037,Math,2026-04-06,Training has been okay but I'd like more subject-specific examples.,neutral_source
+C00087,T038,English,2026-02-16,Students are more engaged when I use AI-generated practice problems tailored to their level.,positive_source
+C00088,T038,English,2026-04-13,Not sure yet if this is saving me time overall once I factor in fixing AI mistakes.,neutral_source
+C00089,T039,Science,2026-01-12,I feel much more confident about the district's AI policy after the last training session.,positive_source
+C00090,T039,Science,2026-02-16,I'm worried about students relying on AI instead of building foundational skills.,negative_source
+C00091,T039,Science,2026-02-23,I haven't had time to attend any of the AI training sessions offered this semester.,negative_source
+C00092,T040,Social Studies,2026-01-12,Students are more engaged when I use AI-generated practice problems tailored to their level.,positive_source
+C00093,T040,Social Studies,2026-03-30,I feel much more confident about the district's AI policy after the last training session.,positive_source
+C00094,T041,English,2026-01-19,I trust the new assessment rubric because it clearly separates AI-assisted drafts from final work.,positive_source
+C00095,T041,English,2026-03-16,"I use it for some tasks but not others, depends on the lesson.",neutral_source
+C00096,T041,English,2026-04-06,"Some students use the AI tools well, others just copy outputs without thinking.",neutral_source
+C00097,T042,Elective/Arts,2026-03-16,I trust the new assessment rubric because it clearly separates AI-assisted drafts from final work.,positive_source

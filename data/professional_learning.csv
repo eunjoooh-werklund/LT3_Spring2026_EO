@@ -1,0 +1,43 @@
+teacher_id,department,credentials_completed,n_completed,credentials_desired,n_desired,professional_goal_progress_pct
+T001,Elective/Arts,Prompt Engineering for Lesson Design,1,Data Privacy & Student Safety,1,71
+T002,English,Prompt Engineering for Lesson Design; AI for IEP/504 Accommodations,2,None,0,100
+T003,Elective/Arts,Data Privacy & Student Safety,1,Grading & Feedback with AI,1,68
+T004,Social Studies,Prompt Engineering for Lesson Design,1,Grading & Feedback with AI; Data Privacy & Student Safety,2,86
+T005,Math,AI Ethics & Academic Integrity; Grading & Feedback with AI,2,None,0,55
+T006,Special Education,AI for IEP/504 Accommodations; Data Privacy & Student Safety,2,None,0,77
+T007,Elective/Arts,Prompt Engineering for Lesson Design,1,AI Ethics & Academic Integrity; Grading & Feedback with AI,2,17
+T008,Elective/Arts,AI for IEP/504 Accommodations,1,AI-Assisted Differentiation,1,86
+T009,Math,Grading & Feedback with AI; AI-Assisted Differentiation; Prompt Engineering for Lesson Design,3,Data Privacy & Student Safety,1,59
+T010,English,Prompt Engineering for Lesson Design; Data Privacy & Student Safety,2,Grading & Feedback with AI; AI for IEP/504 Accommodations,2,28
+T011,Science,AI for IEP/504 Accommodations; AI-Assisted Differentiation; AI Ethics & Academic Integrity,3,Data Privacy & Student Safety; Grading & Feedback with AI,2,35
+T012,Special Education,AI Ethics & Academic Integrity; Grading & Feedback with AI,2,AI for IEP/504 Accommodations; AI-Assisted Differentiation,2,54
+T013,Social Studies,None,0,AI-Assisted Differentiation,1,54
+T014,Elective/Arts,AI for IEP/504 Accommodations,1,None,0,67
+T015,English,AI for IEP/504 Accommodations,1,None,0,73
+T016,Science,AI Ethics & Academic Integrity; Grading & Feedback with AI; AI-Assisted Differentiation,3,Prompt Engineering for Lesson Design; Data Privacy & Student Safety,2,18
+T017,English,Prompt Engineering for Lesson Design; Data Privacy & Student Safety,2,None,0,70
+T018,Math,None,0,AI Ethics & Academic Integrity; Grading & Feedback with AI,2,45
+T019,Elective/Arts,None,0,None,0,96
+T020,Social Studies,None,0,None,0,21
+T021,Elective/Arts,AI for IEP/504 Accommodations; AI Ethics & Academic Integrity,2,AI-Assisted Differentiation; Grading & Feedback with AI,2,76
+T022,Science,AI Ethics & Academic Integrity,1,AI-Assisted Differentiation; Grading & Feedback with AI,2,73
+T023,Special Education,AI Ethics & Academic Integrity; Prompt Engineering for Lesson Design; Grading & Feedback with AI,3,None,0,69
+T024,Special Education,AI-Assisted Differentiation; AI Ethics & Academic Integrity,2,None,0,12
+T025,Elective/Arts,None,0,AI-Assisted Differentiation,1,38
+T026,Math,Grading & Feedback with AI; Prompt Engineering for Lesson Design,2,AI Ethics & Academic Integrity; Data Privacy & Student Safety,2,82
+T027,English,None,0,None,0,13
+T028,Math,AI-Assisted Differentiation; Prompt Engineering for Lesson Design,2,Grading & Feedback with AI; AI for IEP/504 Accommodations,2,6
+T029,Math,Data Privacy & Student Safety; Prompt Engineering for Lesson Design,2,AI-Assisted Differentiation; AI Ethics & Academic Integrity,2,36
+T030,Social Studies,Prompt Engineering for Lesson Design,1,AI for IEP/504 Accommodations,1,41
+T031,Elective/Arts,AI for IEP/504 Accommodations,1,Data Privacy & Student Safety; AI Ethics & Academic Integrity,2,52
+T032,Special Education,Prompt Engineering for Lesson Design; AI Ethics & Academic Integrity; AI-Assisted Differentiation,3,None,0,51
+T033,Science,Prompt Engineering for Lesson Design,1,None,0,56
+T034,Science,AI-Assisted Differentiation,1,None,0,86
+T035,English,Grading & Feedback with AI; AI-Assisted Differentiation; AI for IEP/504 Accommodations,3,AI Ethics & Academic Integrity; Data Privacy & Student Safety,2,13
+T036,Math,AI-Assisted Differentiation; Prompt Engineering for Lesson Design,2,Grading & Feedback with AI; Data Privacy & Student Safety,2,0
+T037,Math,AI for IEP/504 Accommodations,1,None,0,27
+T038,English,Grading & Feedback with AI; AI for IEP/504 Accommodations; Prompt Engineering for Lesson Design,3,AI-Assisted Differentiation,1,34
+T039,Science,Prompt Engineering for Lesson Design; AI for IEP/504 Accommodations,2,AI-Assisted Differentiation,1,48
+T040,Social Studies,AI-Assisted Differentiation; AI for IEP/504 Accommodations,2,None,0,51
+T041,English,AI for IEP/504 Accommodations; Data Privacy & Student Safety; Grading & Feedback with AI,3,None,0,28
+T042,Elective/Arts,Data Privacy & Student Safety; AI for IEP/504 Accommodations,2,AI Ethics & Academic Integrity,1,63

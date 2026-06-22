@@ -1,0 +1,45 @@
+request_id,teacher_id,department,request_type,urgency,status,date_submitted,days_open,urgency_weight,recency_weight,frequency_weight,priority_score
+R0001,T001,Elective/Arts,Need more planning time,Low,Resolved,2026-05-17,0,1,0.0,0.5714285714285714,0.0
+R0002,T002,English,Need more planning time,Medium,Resolved,2026-03-26,0,2,0.0,0.5714285714285714,0.0
+R0003,T002,English,Need clearer AI use policy,Medium,In Progress,2026-05-19,33,2,1.1,1.1428571428571428,62.2
+R0004,T003,Elective/Arts,Need help with student misuse/cheating concerns,Medium,Resolved,2026-06-17,0,2,0.0,2.0,0.0
+R0005,T005,Math,Need help integrating AI with curriculum standards,High,In Progress,2026-04-17,65,3,2.1666666666666665,1.1428571428571428,92.7
+R0006,T006,Special Education,Need help with student misuse/cheating concerns,Medium,Open,2026-06-02,19,2,0.6333333333333333,2.0,66.1
+R0007,T010,English,Need help with student misuse/cheating concerns,Low,Open,2026-04-29,53,1,1.7666666666666666,2.0,57.4
+R0008,T010,English,Need more planning time,Medium,Open,2026-04-07,75,2,2.5,0.5714285714285714,70.4
+R0009,T011,Science,Need more planning time,Medium,Resolved,2026-03-27,0,2,0.0,0.5714285714285714,0.0
+R0010,T012,Special Education,Need training on a specific tool,Low,Open,2026-04-17,65,1,2.1666666666666665,1.4285714285714286,55.7
+R0011,T012,Special Education,Need help with student misuse/cheating concerns,Medium,Open,2026-04-06,76,2,2.533333333333333,2.0,85.0
+R0012,T013,Social Studies,Need help integrating AI with curriculum standards,High,Open,2026-06-12,9,3,0.3,1.1428571428571428,74.1
+R0013,T013,Social Studies,Need help with student misuse/cheating concerns,Low,Open,2026-03-31,82,1,2.7333333333333334,2.0,67.0
+R0014,T014,Elective/Arts,Need ed-tech coach in classroom,High,In Progress,2026-06-08,13,3,0.43333333333333335,2.0,84.0
+R0015,T014,Elective/Arts,Need training on a specific tool,Low,Resolved,2026-06-01,0,1,0.0,1.4285714285714286,0.0
+R0016,T016,Science,Need help integrating AI with curriculum standards,Low,Resolved,2026-04-02,0,1,0.0,1.1428571428571428,0.0
+R0017,T018,Math,Need training on a specific tool,Medium,Open,2026-04-22,60,2,2.0,1.4285714285714286,74.0
+R0018,T020,Social Studies,Need help integrating AI with curriculum standards,High,Open,2026-05-20,32,3,1.0666666666666667,1.1428571428571428,81.7
+R0019,T020,Social Studies,Need ed-tech coach in classroom,Low,Open,2026-05-08,44,1,1.4666666666666666,2.0,54.4
+R0020,T021,Elective/Arts,Need ed-tech coach in classroom,Medium,Open,2026-06-17,4,2,0.13333333333333333,2.0,61.1
+R0021,T022,Science,Need training on a specific tool,Medium,Open,2026-05-04,48,2,1.6,1.4285714285714286,70.0
+R0022,T022,Science,Need help integrating AI with curriculum standards,Low,Resolved,2026-04-13,0,1,0.0,1.1428571428571428,0.0
+R0023,T024,Special Education,Need training on a specific tool,Low,Resolved,2026-05-19,0,1,0.0,1.4285714285714286,0.0
+R0024,T025,Elective/Arts,Need help integrating AI with curriculum standards,Medium,Resolved,2026-04-28,0,2,0.0,1.1428571428571428,0.0
+R0025,T026,Math,Need help with student misuse/cheating concerns,Low,In Progress,2026-04-17,65,1,2.1666666666666665,2.0,61.4
+R0026,T026,Math,Need more planning time,Low,Resolved,2026-04-18,0,1,0.0,0.5714285714285714,0.0
+R0027,T027,English,Need help with student misuse/cheating concerns,Medium,In Progress,2026-05-19,33,2,1.1,2.0,70.7
+R0028,T027,English,Need more planning time,High,Open,2026-05-06,46,3,1.5333333333333334,0.5714285714285714,80.7
+R0029,T028,Math,Need ed-tech coach in classroom,Medium,In Progress,2026-04-29,53,2,1.7666666666666666,2.0,77.3
+R0030,T029,Math,Need ed-tech coach in classroom,Low,Open,2026-05-17,35,1,1.1666666666666667,2.0,51.4
+R0031,T030,Social Studies,Need ed-tech coach in classroom,Medium,Resolved,2026-05-30,0,2,0.0,2.0,0.0
+R0032,T030,Social Studies,Need clearer AI use policy,Medium,Open,2026-05-12,40,2,1.3333333333333333,1.1428571428571428,64.5
+R0033,T031,Elective/Arts,Need training on a specific tool,Low,Open,2026-04-22,60,1,2.0,1.4285714285714286,54.1
+R0034,T031,Elective/Arts,Need clearer AI use policy,Low,In Progress,2026-06-08,13,1,0.43333333333333335,1.1428571428571428,35.6
+R0035,T032,Special Education,Need help integrating AI with curriculum standards,Medium,Resolved,2026-06-02,0,2,0.0,1.1428571428571428,0.0
+R0036,T033,Science,Need ed-tech coach in classroom,Medium,Open,2026-06-12,9,2,0.3,2.0,62.7
+R0037,T033,Science,Need clearer AI use policy,High,Open,2026-03-26,87,3,2.9,1.1428571428571428,100.0
+R0038,T038,English,Need more planning time,High,Resolved,2026-04-16,0,3,0.0,0.5714285714285714,0.0
+R0039,T038,English,Need training on a specific tool,Medium,Open,2026-05-25,27,2,0.9,1.4285714285714286,63.0
+R0040,T040,Social Studies,Need help integrating AI with curriculum standards,High,Resolved,2026-06-16,0,3,0.0,1.1428571428571428,0.0
+R0041,T041,English,Need more planning time,Medium,Resolved,2026-04-13,0,2,0.0,0.5714285714285714,0.0
+R0042,T041,English,Need help integrating AI with curriculum standards,Low,In Progress,2026-05-10,42,1,1.4,1.1428571428571428,45.2
+R0043,T042,Elective/Arts,Need ed-tech coach in classroom,Low,In Progress,2026-05-26,26,1,0.8666666666666667,2.0,48.5
+R0044,T042,Elective/Arts,Need help with student misuse/cheating concerns,Low,Open,2026-04-08,74,1,2.466666666666667,2.0,64.4

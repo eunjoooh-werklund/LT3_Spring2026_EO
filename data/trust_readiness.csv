@@ -1,0 +1,43 @@
+teacher_id,department,policy_clarity,assessment_confidence,comfort_with_ai_tools,perceived_admin_support,pedagogy_understanding,trust_index
+T001,Elective/Arts,4,3,3,3,3,3.2
+T002,English,4,3,4,3,3,3.4
+T003,Elective/Arts,5,4,4,4,3,4.0
+T004,Social Studies,4,4,5,4,3,4.0
+T005,Math,4,4,3,5,5,4.2
+T006,Special Education,3,3,4,4,3,3.4
+T007,Elective/Arts,2,4,4,3,2,3.0
+T008,Elective/Arts,4,3,4,4,3,3.6
+T009,Math,2,3,3,3,2,2.6
+T010,English,2,3,3,2,1,2.2
+T011,Science,2,3,3,2,2,2.4
+T012,Special Education,4,2,2,3,4,3.0
+T013,Social Studies,3,3,4,4,4,3.6
+T014,Elective/Arts,4,3,4,3,3,3.4
+T015,English,3,2,4,5,4,3.6
+T016,Science,3,2,3,4,4,3.2
+T017,English,4,4,4,4,3,3.8
+T018,Math,3,3,4,4,3,3.4
+T019,Elective/Arts,3,3,2,3,3,2.8
+T020,Social Studies,3,4,2,2,3,2.8
+T021,Elective/Arts,3,3,3,2,3,2.8
+T022,Science,3,4,3,3,5,3.6
+T023,Special Education,3,3,4,4,3,3.4
+T024,Special Education,2,2,2,3,4,2.6
+T025,Elective/Arts,4,4,4,3,3,3.6
+T026,Math,4,4,3,3,4,3.6
+T027,English,3,4,4,3,3,3.4
+T028,Math,4,4,3,3,4,3.6
+T029,Math,3,3,5,4,3,3.6
+T030,Social Studies,4,3,3,4,4,3.6
+T031,Elective/Arts,2,2,3,4,2,2.6
+T032,Special Education,2,1,3,2,3,2.2
+T033,Science,4,4,2,3,2,3.0
+T034,Science,1,2,3,3,1,2.0
+T035,English,3,1,2,2,2,2.0
+T036,Math,2,2,2,2,3,2.2
+T037,Math,3,2,3,3,2,2.6
+T038,English,3,4,3,5,2,3.4
+T039,Science,2,2,4,2,2,2.4
+T040,Social Studies,3,3,3,3,1,2.6
+T041,English,4,4,5,5,4,4.4
+T042,Elective/Arts,4,2,4,3,2,3.0

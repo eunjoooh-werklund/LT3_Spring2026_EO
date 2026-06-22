@@ -1,0 +1,43 @@
+teacher_id,teacher_name,department,years_experience,school,adoption_propensity
+T001,Teacher 1,Elective/Arts,19,Lincoln Middle School,0.48972069460256057
+T002,Teacher 2,English,22,Lincoln Middle School,0.579295551718901
+T003,Teacher 3,Elective/Arts,3,Lincoln Middle School,0.6555200196446701
+T004,Teacher 4,Social Studies,10,Lincoln Middle School,0.678020784362714
+T005,Teacher 5,Math,24,Lincoln Middle School,0.6928025023359866
+T006,Teacher 6,Special Education,25,Lincoln Middle School,0.4872294869952813
+T007,Teacher 7,Elective/Arts,14,Lincoln Middle School,0.466776677320378
+T008,Teacher 8,Elective/Arts,25,Lincoln Middle School,0.7044356586262878
+T009,Teacher 9,Math,26,Lincoln Middle School,0.5155652215213093
+T010,Teacher 10,English,12,Lincoln Middle School,0.3203764617991741
+T011,Teacher 11,Science,27,Lincoln Middle School,0.34600830147937356
+T012,Teacher 12,Special Education,9,Lincoln Middle School,0.38449858851971
+T013,Teacher 13,Social Studies,8,Lincoln Middle School,0.6394889339296775
+T014,Teacher 14,Elective/Arts,21,Lincoln Middle School,0.5756366324927018
+T015,Teacher 15,English,20,Lincoln Middle School,0.6742873637321983
+T016,Teacher 16,Science,5,Lincoln Middle School,0.4730945236594239
+T017,Teacher 17,English,25,Lincoln Middle School,0.5785371443938087
+T018,Teacher 18,Math,6,Lincoln Middle School,0.6626062709141206
+T019,Teacher 19,Elective/Arts,25,Lincoln Middle School,0.49431762285035713
+T020,Teacher 20,Social Studies,1,Lincoln Middle School,0.6322195427603341
+T021,Teacher 21,Elective/Arts,24,Lincoln Middle School,0.43085333060800285
+T022,Teacher 22,Science,24,Lincoln Middle School,0.48465030761828715
+T023,Teacher 23,Special Education,24,Lincoln Middle School,0.48128717908030083
+T024,Teacher 24,Special Education,20,Lincoln Middle School,0.3347488637939729
+T025,Teacher 25,Elective/Arts,15,Lincoln Middle School,0.6376550465414048
+T026,Teacher 26,Math,22,Lincoln Middle School,0.46550757876350973
+T027,Teacher 27,English,9,Lincoln Middle School,0.5522489413709838
+T028,Teacher 28,Math,24,Lincoln Middle School,0.6365343986030636
+T029,Teacher 29,Math,17,Lincoln Middle School,0.63037561168539
+T030,Teacher 30,Social Studies,14,Lincoln Middle School,0.6697693196151016
+T031,Teacher 31,Elective/Arts,16,Lincoln Middle School,0.5322726127883038
+T032,Teacher 32,Special Education,18,Lincoln Middle School,0.47380630383205236
+T033,Teacher 33,Science,2,Lincoln Middle School,0.5356507220368483
+T034,Teacher 34,Science,5,Lincoln Middle School,0.2462798018875547
+T035,Teacher 35,English,8,Lincoln Middle School,0.28951975496384436
+T036,Teacher 36,Math,4,Lincoln Middle School,0.3119140697762076
+T037,Teacher 37,Math,14,Lincoln Middle School,0.37049557103173336
+T038,Teacher 38,English,21,Lincoln Middle School,0.6219593608102186
+T039,Teacher 39,Science,20,Lincoln Middle School,0.3870137700351891
+T040,Teacher 40,Social Studies,15,Lincoln Middle School,0.4819307402729099
+T041,Teacher 41,English,26,Lincoln Middle School,0.7838610936014918
+T042,Teacher 42,Elective/Arts,17,Lincoln Middle School,0.4858724852089434
