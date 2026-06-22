@@ -96,18 +96,11 @@ st.markdown("""
     section[data-testid="stSidebar"] .stSlider [role="slider"] {
         background: #FFFFFF !important;
     }
-    section[data-testid="stSidebar"] .stSlider div[data-baseweb="slider"] div[role="progressbar"],
-    section[data-testid="stSidebar"] .stSlider div[data-baseweb="slider"] div[role="progressbar"] > div {
-        background: #FFFFFF !important;
-    }
-    section[data-testid="stSidebar"] .stSlider div[data-baseweb="slider"] > div {
-        background: rgba(255,255,255,0.4) !important;
-    }
-    section[data-testid="stSidebar"] .stSlider div[data-baseweb="slider"] > div > div {
-        background: #FFFFFF !important;
-    }
     section[data-testid="stSidebar"] .stSlider span {
         color: #FFFFFF !important;
+    }
+    section[data-testid="stSidebar"] [data-baseweb="slider"] [role="progressbar"] {
+        background-color: #FFFFFF !important;
     }
 
     /* Main content */
